@@ -6,3 +6,5 @@ too_easy
 .RUN_ME
 K5n2UFfpFMUN
 BUmyYq5XxXGt
+u^v\cdot\left(v^\prime\cdot\ln{\left(u\right)}+v\cdot\frac{u^\prime}{u}\right)\ast\ y
+chin_chu_lan_cha
