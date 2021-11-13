@@ -44,6 +44,8 @@ int main(int argc, char const *argv[])
     
     while(still_in_game){ //ahora esta como en un while 1. Hay que ver como hacemos que corte cuando termina
 
+		// habria que hacer los chequeos de conexion al server 
+		
         scanf("%s", buffer);
         strcat(buffer, "\n");
         send(sock,buffer, strlen(buffer), 0 ); //mandas la respuesta

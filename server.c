@@ -9,7 +9,7 @@
 #include <string.h>
 #define MAX_DESAFIOS 13
 #define CANT_RESPUESTAS 12
-char *rtas[CANT_RESPUESTAS] = {"entendido\n", "itba\n", "M4GFKZ289aku\n", "fk3wfLCm3QvS\n", "too_easy\n", ".RUN_ME\n", "K5n2UFfpFMUN\n", "BUmyYq5XxXGt\n", "u^v n", "chin_chu_lan_cha\n", "gdb_rules\n", "normal\n"};
+char *rtas[CANT_RESPUESTAS] = {"entendido\n", "itba\n", "M4GFKZ289aku\n", "fk3wfLCm3QvS\n", "too_easy\n", ".RUN_ME\n", "K5n2UFfpFMUN\n", "BUmyYq5XxXGt\n", "u^v", "chin_chu_lan_cha\n", "gdb_rules\n", "normal\n"};
 
 #define PORT 8080
 
@@ -67,17 +67,17 @@ int main(int argc, char const *argv[])
     {
         desafioNro = 1;
         //habria que llamar al primer desafio
-		//(*desafios[desafioNro])();
+		//(*desafios[desafioNro])();  --> Para mi no va aca
         while(desafioNro < MAX_DESAFIOS && (valread = read(new_socket, bufferClient, (size_t) bufferClient))>0){
-            //(*desafios[desafioNro])();
+            //(*desafios[desafioNro])(); --> para mi esto no va 
             if(strcmp(bufferClient, rtas[desafioNro]) == 0){
                 desafioNro++;
                 if(desafioNro<MAX_DESAFIOS){
-                    //(*desafios[desafioNro])();
+                    //(*desafios[desafioNro])(); --> aca si
                 }
             }
             else{
-                sprintf(buffer,"Respuesta incorrecta: %s", bufferClient);
+                printf("Respuesta incorrecta: %s", bufferClient);
             }
             cleanBuffer(bufferClient);
         }
@@ -86,7 +86,14 @@ int main(int argc, char const *argv[])
             perror("accept");
             exit(EXIT_FAILURE);
         }
+        if (valread < 0)
+        {
+            perror("error in fd reading");
+            exit(EXIT_FAILURE);
+        }
+        
     }
+    printf("Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n");
     close(server_fd);
     return 0;
 }
