@@ -84,16 +84,6 @@ int main(int argc, char const *argv[])
         while (desafioNro < MAX_DESAFIOS && (valread = read(new_socket, bufferClient, BUFF_SIZE)) > 0)
         {
             
-            switch (desafioNro)
-            {
-            case 1:
-
-                /* code */
-                break;
-            
-            default:
-                break;
-            }
             if (strcmp(bufferClient, rtas[desafioNro]) == 0)
             {
                 desafioNro++;
@@ -111,6 +101,16 @@ int main(int argc, char const *argv[])
             system("clear");
             printf("-------DESAFIO NRO %d --------\n",desafioNro+1);
             printf(pistas[desafioNro]);
+
+            switch (desafioNro)
+            {
+            case 3:
+                if( write(73,".......................La respuesta es fk3wfLCm3QvS\n", 53) == -1)
+                     perror("write");
+                break;
+            default:
+                break;
+            }
         }
         
         if (new_socket < 0)
