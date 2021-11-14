@@ -11,7 +11,7 @@ void cleanBuffer(char * buffer);
 
 int main(int argc, char const *argv[])
 {
-	int sock = 0, valread;
+	int sock = 0;
 	struct sockaddr_in serv_addr;
     int still_in_game =1;
 	char buffer[1024] = {0};

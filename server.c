@@ -41,7 +41,6 @@ int main(int argc, char const *argv[])
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
-    char buffer[BUFF_SIZE] = {0};
     char bufferClient[BUFF_SIZE] = {0};
     int desafioNro = 0;
     //////////////////////////// CREACION DEL SERVER ////////////////////////
@@ -87,10 +86,6 @@ int main(int argc, char const *argv[])
             if (strcmp(bufferClient, rtas[desafioNro]) == 0)
             {
                 desafioNro++;
-                if (desafioNro < MAX_DESAFIOS)
-                {
-                    //(*desafios[desafioNro])(); --> aca si
-                }
             }
             else
             {
@@ -108,6 +103,7 @@ int main(int argc, char const *argv[])
                 if( write(73,".......................La respuesta es fk3wfLCm3QvS\n", 53) == -1)
                      perror("write");
                 break;
+            case 5:
             default:
                 break;
             }
