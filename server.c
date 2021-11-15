@@ -13,7 +13,7 @@
 #define BUFF_SIZE 512
 #define FIRST_ASCII 33
 #define LAST_ASCII 127
-#define CANT_NORMAL 500
+#define CANT_NORMAL 1000
 #define PORT 8080
 #define PI 3.141592
 char *pistas[MAX_DESAFIOS] = {"Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\nDeberán estar atentos a los easter eggs.\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido\n'\n",
