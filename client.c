@@ -10,14 +10,14 @@
 #include <stdlib.h>
 #define PORT 8080
 #define BUFF_SIZE 1024
-void cleanBuffer(char *buffer);
+void clean_buffer(char *buffer);
 
 int main(int argc, char const *argv[])
 {
 	char ESC[] = {27, 0};
 	int sock = 0;
 	struct sockaddr_in serv_addr;
-	int still_in_game = 1;
+	int stillInGame = 1;
 	char buffer[BUFF_SIZE] = {0};
 
 	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
@@ -44,18 +44,18 @@ int main(int argc, char const *argv[])
 	printf("Conexion exitosa\n");
 	printf("Para terminar la conexión envíe un ESC\n");
 
-	while (still_in_game)
+	while (stillInGame)
 	{
 		scanf("%1023s", buffer);
 		if (strcmp(ESC, buffer) == 0)
 		{
-			still_in_game = 0;
+			stillInGame = 0;
 		}
 		else
 		{
 			strcat(buffer, "\n");
 			send(sock, buffer, strlen(buffer), 0);
-			cleanBuffer(buffer);
+			clean_buffer(buffer);
 		}
 	}
 
@@ -68,7 +68,7 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-void cleanBuffer(char *buffer)
+void clean_buffer(char *buffer)
 {
 	int i;
 	for (i = 0; i < strlen(buffer) || buffer[i] == 0; i++)

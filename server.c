@@ -34,12 +34,12 @@ char *rtas[MAX_DESAFIOS] = {"entendido\n", "itba\n", "M4GFKZ289aku\n", "fk3wfLCm
 
 // https://rosettacode.org/wiki/Random_numbers#C
 
-double drand() /* uniform distribution, (0..1] */
+double drand()
 {
     return (rand() + 1.0) / (RAND_MAX + 1.0);
 }
 
-double normal() /* normal distribution, centered on 0, std dev 1 */
+double normal()
 {
     return sqrt(-2 * log(drand())) * cos(2 * PI * drand());
 }
@@ -110,7 +110,7 @@ void check_quine()
         }
     }
 }
-void cleanBuffer(char *buffer)
+void clean_buffer(char *buffer)
 {
     int i;
     for (i = 0; i < BUFF_SIZE || buffer[i] == 0; i++)
@@ -121,7 +121,7 @@ void cleanBuffer(char *buffer)
 
 int main(int argc, char const *argv[])
 {
-    int server_fd, new_socket, valread;
+    int serverFd, newSocket, valread;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
@@ -129,14 +129,13 @@ int main(int argc, char const *argv[])
     int desafioNro = 0;
 
 
-    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
+    if ((serverFd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         perror("socket failed");
         exit(EXIT_FAILURE);
     }
 
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
-                   &opt, sizeof(opt)))
+    if (setsockopt(serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,&opt, sizeof(opt)))
     {
         perror("setsockopt");
         exit(EXIT_FAILURE);
@@ -145,35 +144,35 @@ int main(int argc, char const *argv[])
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(PORT);
 
-    if (bind(server_fd, (struct sockaddr *)&address,
-             sizeof(address)) < 0)
+    if (bind(serverFd, (struct sockaddr *)&address,sizeof(address)) < 0)
     {
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
-    if (listen(server_fd, 3) < 0)
+    if (listen(serverFd, 3) < 0)
     {
         perror("listen");
         exit(EXIT_FAILURE);
     }
 
-    while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
+    while ((newSocket = accept(serverFd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
     {
         printf("%s", pistas[desafioNro]);
-        while (desafioNro < MAX_DESAFIOS && (valread = read(new_socket, bufferClient, BUFF_SIZE)) > 0)
+        while (desafioNro < MAX_DESAFIOS && (valread = read(newSocket, bufferClient, BUFF_SIZE)) > 0)
         {
 
             if (strcmp(bufferClient, rtas[desafioNro]) == 0)
             {
                 desafioNro++;
-                if(desafioNro == MAX_DESAFIOS)
+                if(desafioNro == MAX_DESAFIOS){
                     break;
+                }
             }
             else
             {
                 printf("Respuesta incorrecta: %s", bufferClient);
             }
-            cleanBuffer(bufferClient);
+            clean_buffer(bufferClient);
             sleep(1);
             system("clear");
             printf("-------DESAFIO NRO %d --------\n", desafioNro + 1);
@@ -205,7 +204,7 @@ int main(int argc, char const *argv[])
             }
         }
 
-        if (new_socket < 0)
+        if (newSocket < 0)
         {
             perror("accept");
             exit(EXIT_FAILURE);
@@ -217,7 +216,7 @@ int main(int argc, char const *argv[])
         }
     }
     printf("Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n");
-    if(close(server_fd) < 0) 
+    if(close(serverFd) < 0) 
     {
         perror("error in fd close");
         exit(EXIT_FAILURE);
