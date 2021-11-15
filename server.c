@@ -155,7 +155,7 @@ int main(int argc, char const *argv[])
         exit(EXIT_FAILURE);
     }
 
-    while ((newSocket = accept(serverFd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
+    while (desafioNro < MAX_DESAFIOS && (newSocket = accept(serverFd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
     {
         printf("%s", pistas[desafioNro]);
         while (desafioNro < MAX_DESAFIOS && (valread = read(newSocket, bufferClient, BUFF_SIZE)) > 0)
@@ -215,7 +215,7 @@ int main(int argc, char const *argv[])
             exit(EXIT_FAILURE);
         }
     }
-    printf("Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n");
+    printf("\nFelicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n");
     if(close(serverFd) < 0) 
     {
         perror("error in fd close");
