@@ -15,13 +15,14 @@
 #define LAST_ASCII 127
 #define CANT_NORMAL 500
 #define PORT 8080
+#define PI 3.141592
 char *pistas[MAX_DESAFIOS] = {"Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\nDeberán estar atentos a los easter eggs.\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido\n'\n",
                               "The Wire S1E5 5295 888 6288\n",
                               "https://ibb.co/tc0Hb6w\n",
                               "EBADF… write: Bad File Descriptor\n",
                               " respuesta = strings:277\n",
                               ".data .bss .comment ? .shstrtab .symtab .strtab\n",
-                              "Filter error\nL7a.\t->E*4Q{XZuY[A2!Oqf:^ 0aAF>rRes.mp:_zAOLu+vlq*t7e\"/ACsd*L$.ta]I>?? KpX$e$B~$?syK fv\\O: K0<^In5x>nyd<O8\"2UijMmFYm|R!fsC{p{'p/Ua}tkrj6gkD>KdM.CL&+FM1qUY-1|y0j@A41ja2NV1\n",
+                              "Filter error\n",
                               "¿?\n",
                               " Latexme\nSi\n\\mathrm{d}y = u^v{\\cdot}(v'{\\cdot}\\ln{(u)}+v{\\cdot}\frac{u'}{u})\nentonces\ny =\n",
                               "quine\n",
@@ -40,7 +41,7 @@ double drand() /* uniform distribution, (0..1] */
 
 double normal() /* normal distribution, centered on 0, std dev 1 */
 {
-    return sqrt(-2 * log(drand())) * cos(2 * M_PI * drand());
+    return sqrt(-2 * log(drand())) * cos(2 * PI * drand());
 }
 
 void dist_normal()

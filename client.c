@@ -7,6 +7,7 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 #define PORT 8080
 #define BUFF_SIZE 1024
 void cleanBuffer(char *buffer);
