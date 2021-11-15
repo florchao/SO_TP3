@@ -20,13 +20,13 @@ char *pistas[MAX_DESAFIOS] = {"Bienvenidos al TP3 y felicitaciones, ya resolvier
                               "The Wire S1E5 5295 888 6288\n",
                               "https://ibb.co/tc0Hb6w\n",
                               "EBADF… write: Bad File Descriptor\n",
-                              " respuesta = strings:277\n",
-                              ".data .bss .comment ? .shstrtab .symtab .strtab\n",
+                              " respuesta = strings:70\n",
+                              ".debug_line .debug_str .debug_macro ? .shstrtab .symtab .strtab\n",
                               "Filter error\n",
                               "¿?\n",
                               " Latexme\nSi\n\\mathrm{d}y = u^v{\\cdot}(v'{\\cdot}\\ln{(u)}+v{\\cdot}\frac{u'}{u})\nentonces\ny =\n",
                               "quine\n",
-                              " b gdbme y encontrá el valor mágico\n",
+                              " b gdb_me y encontrá el valor mágico\n",
                               "Me conoces \n"};
 char *rtas[MAX_DESAFIOS] = {"entendido\n", "itba\n", "M4GFKZ289aku\n", "fk3wfLCm3QvS\n", "too_easy\n", ".RUN_ME\n", "K5n2UFfpFMUN\n", "BUmyYq5XxXGt\n", "u^v\n", "chin_chu_lan_cha\n", "gdb_rules\n", "normal\n"};
 
