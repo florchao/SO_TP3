@@ -13,6 +13,7 @@
 #define FIRST_ASCII 33
 #define LAST_ASCII 127
 #define CANT_NORMAL 500
+#define PORT 8080
 char *pistas[MAX_DESAFIOS] = {"Bienvenidos al TP3 y felicitaciones, ya resolvieron el primer acertijo.\nEn este TP deberán finalizar el juego que ya comenzaron resolviendo los desafíos de cada nivel.\nAdemás tendrán que investigar otras preguntas para responder durante la defensa.\nEl desafío final consiste en crear un programa que se comporte igual que yo, es decir, que provea los mismos desafíos y que sea necesario hacer lo mismo para resolverlos. No basta con esperar la respuesta.\nAdemás, deberán implementar otro programa para comunicarse conmigo.\nDeberán estar atentos a los easter eggs.\nPara verificar que sus respuestas tienen el formato correcto respondan a este desafío con la palabra 'entendido\n'\n",
                               "The Wire S1E5 5295 888 6288\n",
                               "https://ibb.co/tc0Hb6w\n",
@@ -27,7 +28,7 @@ char *pistas[MAX_DESAFIOS] = {"Bienvenidos al TP3 y felicitaciones, ya resolvier
                               "Me conoces \n"};
 char *rtas[MAX_DESAFIOS] = {"entendido\n", "itba\n", "M4GFKZ289aku\n", "fk3wfLCm3QvS\n", "too_easy\n", ".RUN_ME\n", "K5n2UFfpFMUN\n", "BUmyYq5XxXGt\n", "u^v\n", "chin_chu_lan_cha\n", "gdb_rules\n", "normal\n"};
 
-#define PORT 8080
+
 
 // https://rosettacode.org/wiki/Random_numbers#C
 
@@ -41,7 +42,8 @@ double normal() /* normal distribution, centered on 0, std dev 1 */
     return sqrt(-2 * log(drand())) * cos(2 * PI * drand());
 }
 
-void dist_normal(){
+void dist_normal()
+{
     double valores[CANT_NORMAL];
     int i;
     for (i = 0; i < CANT_NORMAL; i++)
@@ -51,13 +53,15 @@ void dist_normal(){
     }
 }
 
-void gdb_me(){
-     if (getpid() == 0x12345678)
+void gdb_me()
+{
+    if (getpid() == 0x12345678)
     {
         printf("La respuesta es: gdb_rules\n\n");
     }
-    else{
-        printf("oprima ok para reintentar.\n");
+    else
+    {
+        printf("Oprima ok para reintentar.\n");
     }
 }
 
@@ -82,7 +86,7 @@ void filter_error()
     }
 }
 
-void check_quine() 
+void check_quine()
 {
     int flag = system("gcc quine.c -o quine");
 
@@ -121,15 +125,14 @@ int main(int argc, char const *argv[])
     int addrlen = sizeof(address);
     char bufferClient[BUFF_SIZE] = {0};
     int desafioNro = 0;
-    //////////////////////////// CREACION DEL SERVER ////////////////////////
-    // Creating socket file descriptor
+
+
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0)
     {
         perror("socket failed");
         exit(EXIT_FAILURE);
     }
 
-    // Forcefully attaching socket to the port 8080
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT,
                    &opt, sizeof(opt)))
     {
@@ -140,7 +143,6 @@ int main(int argc, char const *argv[])
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(PORT);
 
-    // Forcefully attaching socket to the port 8080
     if (bind(server_fd, (struct sockaddr *)&address,
              sizeof(address)) < 0)
     {
@@ -152,8 +154,6 @@ int main(int argc, char const *argv[])
         perror("listen");
         exit(EXIT_FAILURE);
     }
-
-    ///////////////////////////////////////////////////////////////
 
     while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
     {
@@ -195,6 +195,7 @@ int main(int argc, char const *argv[])
                 break;
             case 11:
                 dist_normal();
+                break;
             default:
                 break;
             }
@@ -212,7 +213,11 @@ int main(int argc, char const *argv[])
         }
     }
     printf("Felicitaciones, finalizaron el juego. Ahora deberán implementar el servidor que se comporte como el servidor provisto\n");
-    close(server_fd);
-    //chequear error del close
+    if(close(server_fd) < 0) 
+    {
+        perror("error in fd close");
+        exit(EXIT_FAILURE);
+    }
+
     return 0;
 }

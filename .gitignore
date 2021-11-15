@@ -1,0 +1,11 @@
+.vscode/*
+.vscode
+
+*.o
+.bash_history
+
+/report.tasks
+/results.valgrind
+report.tasks
+/output.cppOut
+.config\PVS-Studio
