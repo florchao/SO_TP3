@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 // Client side C/C++ program to demonstrate Socket programming
 // https://www.geeksforgeeks.org/socket-programming-cc/ idea sacada de aca
 #include <stdio.h>
@@ -43,7 +45,7 @@ int main(int argc, char const *argv[])
 
 	while (still_in_game)
 	{
-		scanf("%s", buffer);
+		scanf("%1023s", buffer);
 		if (strcmp(ESC, buffer) == 0)
 		{
 			still_in_game = 0;

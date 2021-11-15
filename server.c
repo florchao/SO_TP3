@@ -1,3 +1,5 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++ and C#: http://www.viva64.com
 // Server side C/C++ program to demonstrate Socket programming
 // https://www.geeksforgeeks.org/socket-programming-cc/ idea sacada de aca
 #include <unistd.h>
@@ -9,7 +11,6 @@
 #include <string.h>
 #define MAX_DESAFIOS 12
 #define BUFF_SIZE 512
-#define PI 3.1415
 #define FIRST_ASCII 33
 #define LAST_ASCII 127
 #define CANT_NORMAL 500
@@ -39,7 +40,7 @@ double drand() /* uniform distribution, (0..1] */
 
 double normal() /* normal distribution, centered on 0, std dev 1 */
 {
-    return sqrt(-2 * log(drand())) * cos(2 * PI * drand());
+    return sqrt(-2 * log(drand())) * cos(2 * M_PI * drand());
 }
 
 void dist_normal()
@@ -157,13 +158,15 @@ int main(int argc, char const *argv[])
 
     while ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t *)&addrlen)))
     {
-        printf(pistas[desafioNro]);
+        printf("%s", pistas[desafioNro]);
         while (desafioNro < MAX_DESAFIOS && (valread = read(new_socket, bufferClient, BUFF_SIZE)) > 0)
         {
 
             if (strcmp(bufferClient, rtas[desafioNro]) == 0)
             {
                 desafioNro++;
+                if(desafioNro == MAX_DESAFIOS)
+                    break;
             }
             else
             {
@@ -173,7 +176,7 @@ int main(int argc, char const *argv[])
             sleep(1);
             system("clear");
             printf("-------DESAFIO NRO %d --------\n", desafioNro + 1);
-            printf(pistas[desafioNro]);
+            printf("%s", pistas[desafioNro]);
 
             switch (desafioNro)
             {
